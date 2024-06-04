@@ -18,6 +18,7 @@ import GForm from "./Component/Googleform.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./Component/ProtectedRoute.jsx";
+import Result from "./Component/Result.jsx";
 
 const queryClient = new QueryClient();
 
@@ -36,9 +37,11 @@ const router = createBrowserRouter(
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/student/:pin" element={<Student />} />
         <Route path="" element={<Home />} />
+        <Route path="/result" element={<Result/>}/>
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      
     </>
   )
 );

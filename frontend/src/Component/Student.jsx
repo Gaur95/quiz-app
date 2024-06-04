@@ -24,10 +24,10 @@ const Student = () => {
   //     .catch((error) => console.log(error));
   // }, []);
 
-  const correctAnswers = studentQuestions.reduce((acc, question) => {
-    acc[studentQuestions._id] = studentQuestions.correctAns;
-    return acc;
-  }, {});
+  // const correctAnswers = studentQuestions.reduce((acc, question) => {
+  //   acc[studentQuestions._id] = studentQuestions.correctAns;
+  //   return acc;
+  // }, {});
 
   const chooseOption = (option, correctAns) => {
     setAnswers((prevAnswers) => ({
@@ -132,7 +132,7 @@ const Student = () => {
             >
               Next
             </button>
-            {currentQuestionIndex === studentQuestions.length - 1 && (
+            {currentQuestionIndex === questions.length - 1 && (
               <button className="button submit-button" onClick={submitQuiz}>
                 Submit
               </button>
@@ -142,7 +142,7 @@ const Student = () => {
       ) : (
         <div id="result" className="result-container">
           <h2 id="score" className="score-text">
-            Score: {score}/totalScored
+            Score: {score}/{questions.length * 10}
           </h2>
           <p id="feedback" className="feedback-text">
             {score >= 70
