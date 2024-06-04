@@ -3,7 +3,7 @@ import { Score } from "../models/score.model.js";
 export const submitScore = async (req, res) => {
   try {
     const user = req.user;
-    const { score, quizCode } = req.body;
+    const { score, totalScore, quizCode } = req.body;
 
     await Score.create({
       name: user.name,
@@ -11,6 +11,7 @@ export const submitScore = async (req, res) => {
       college: user.college,
       score,
       quizCode,
+      totalScore,
       userId: user._id,
     });
 

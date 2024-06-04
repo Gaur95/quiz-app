@@ -13,9 +13,8 @@ const scoreSchema = new Schema({
   score: {
     type: Number,
   },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+  totalScore: {
+    type: Number,
   },
   quizCode: {
     type: String,

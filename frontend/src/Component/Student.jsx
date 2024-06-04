@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import "./Student.css";
 import { useParams } from "react-router-dom";
 import useQuiz from "../hooks/useQuiz";
+import useCurrentUser from "../hooks/useCurrentUser";
+import useSubmitScore from "../hooks/useSubmitScore";
 
 const Student = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -13,17 +15,9 @@ const Student = () => {
   const numOfQuestions = 10;
   const [selectedOption, SetSelectedOption] = useState(null);
   const { questions, loadingQuestions } = useQuiz();
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:3000/quiz/getQuiz/${pin}`)
-  //     .then((response) => {
-  //       setStudentQuestions(response.data.data.questionArray);
-  //       console.log(studentQuestions);
-  //     })
-  //     .catch((error) => console.log(error));
-  // }, []);
-
+  const { user, isLoading } = useCurrentUser();
+  const { submitScore } = useSubmitScore();
+  const { pin } = useParams();
   const correctAnswers = studentQuestions.reduce((acc, question) => {
     acc[studentQuestions._id] = studentQuestions.correctAns;
     return acc;
@@ -99,6 +93,16 @@ const Student = () => {
     });
     setScore(newScore);
     setShowResult(true);
+    const data = {
+      name: user.name,
+      college: user.college,
+      course: user.course,
+      score: newScore,
+      totalScore: questions.length * 10,
+      quizCode: pin,
+    };
+    console.log(data);
+    submitScore(data);
     console.log(answers);
   };
 
@@ -109,7 +113,7 @@ const Student = () => {
     setScore(0);
   };
 
-  if (loadingQuestions) return null;
+  if (loadingQuestions || isLoading) return null;
 
   console.log(questions);
   return (
@@ -132,7 +136,7 @@ const Student = () => {
             >
               Next
             </button>
-            {currentQuestionIndex === studentQuestions.length - 1 && (
+            {currentQuestionIndex === questions.length - 1 && (
               <button className="button submit-button" onClick={submitQuiz}>
                 Submit
               </button>
@@ -142,7 +146,7 @@ const Student = () => {
       ) : (
         <div id="result" className="result-container">
           <h2 id="score" className="score-text">
-            Score: {score}/100
+            Score: {score}/{questions.length * 10}
           </h2>
           <p id="feedback" className="feedback-text">
             {score >= 70

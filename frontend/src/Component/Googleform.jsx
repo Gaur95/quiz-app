@@ -61,29 +61,6 @@ const GForm = () => {
       if (question.id === id) {
         return { ...question, correctOption: option };
       }
-      // return (
-      //     <div className="quiz-question-container">
-      //       {/* <h2>{question}</h2> */}
-      //       <form onSubmit={handleSubmit}>
-      //         {options.map((option, index) => (
-      //           <div key={index} className="option">
-      //             <label>
-      //               <input
-      //                 type="checkbox"
-      //                 value={option}
-      //                 checked={selectedOptions.includes(option)}
-      //                 onChange={handleOptionChange}
-      //               />
-      //               {option}
-      //             </label>
-      //           </div>
-      //         ))}
-      //         <button type="submit">Submit</button>
-      //       </form>
-
-      //     </div>
-      //   );
-      // };
 
       return question;
     });
@@ -232,18 +209,19 @@ const Card = ({
             <>
               <label htmlFor={`ans${index}`}>
                 {" "}
-                {index == 0 && "A "}
-                {index == 1 && "B "}
-                {index == 2 && "C "}
-                {index == 3 && "D "}
-                <input
-                  type="radio"
+                <button
+                  // type="radio"
                   name="answer"
                   id={`ans${index}`}
-                  onChange={(e) =>
+                  onClick={(e) =>
                     handleCorrectAnswerChange(option, question.id)
                   }
-                />
+                >
+                  {index == 0 && "A "}
+                  {index == 1 && "B "}
+                  {index == 2 && "C "}
+                  {index == 3 && "D "}
+                </button>
               </label>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </>
