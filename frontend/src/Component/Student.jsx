@@ -203,7 +203,7 @@ const Student = () => {
       ) : (
         <div id="result" className="result-container">
           <h2 id="score" className="score-text">
-            Score: {score}/100
+            Score: {score}/totalScored
           </h2>
           <p id="feedback" className="feedback-text">
             {score >= 70
