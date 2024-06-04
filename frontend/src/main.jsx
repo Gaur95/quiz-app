@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import App from './App.jsx'
 import "./index.css";
 import {
   Route,
@@ -16,22 +15,39 @@ import ContactUs from "./Component/ContactUs.jsx";
 import Home from "./Component/Home.jsx";
 import Student from "./Component/Student.jsx";
 import GForm from "./Component/Googleform.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "./Component/ProtectedRoute.jsx";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <>
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Layout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/quiz" element={<GForm />} />
+        <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/student/:pin" element={<Student />} />
+        <Route path="" element={<Home />} />
+      </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/quiz" element={<GForm />} />
-      <Route path="/contactus" element={<ContactUs />} />
-      <Route path="/student/:pin" element={<Student />} />
-      <Route path="" element={<Home />} />
-    </Route>
+    </>
   )
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <Toaster position="top-center" />
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );

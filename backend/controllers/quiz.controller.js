@@ -10,7 +10,7 @@ export const addQuiz = async (req, res) => {
     questionArray,
   });
 
-  return res.status(200).json({ msg: "quiz added successfully", quiz });
+  return res.status(200).json({ message: "quiz added successfully", quiz });
 };
 
 export const getQuiz = async (req, res) => {

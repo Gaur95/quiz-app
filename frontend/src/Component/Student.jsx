@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Student.css";
 import { useParams } from "react-router-dom";
+import useQuiz from "../hooks/useQuiz";
 
 const Student = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -11,82 +12,17 @@ const Student = () => {
   const [studentQuestions, setStudentQuestions] = useState([]);
   const numOfQuestions = 10;
   const [selectedOption, SetSelectedOption] = useState(null);
+  const { questions, loadingQuestions } = useQuiz();
 
-  const { pin } = useParams();
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/quiz/getQuiz/${pin}`)
-      .then((response) => {
-        setStudentQuestions(response.data.data.questionArray);
-        // console.log(response.data.data.questionArray);
-        console.log(studentQuestions);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  // const questions = [
-  //   {
-  //     id: "q1",
-  //     question: "Question 1?",
-  //     options: ["a", "b", "c", "d"],
-  //     correctAns: "a",
-  //   },
-  //   {
-  //     id: "q2",
-  //     question: "Question 2?",
-  //     options: ["a", "b", "c", "d"],
-  //     correctAnswer: "a",
-  //   },
-  //   {
-  //     id: "q3",
-  //     question: "Question 3?",
-  //     options: ["a", "b", "c", "d"],
-  //     correctAnswer: "d",
-  //   },
-  //   {
-  //     id: "q4",
-  //     question: "Question 4?",
-  //     options: ["a", "b", "c", "d"],
-  //     correctAnswer: "a",
-  //   },
-  //   {
-  //     id: "q5",
-  //     question: "Question 5?",
-  //     options: ["a", "b", "c", "d"],
-  //     correctAnswer: "c",
-  //   },
-  //   {
-  //     id: "q6",
-  //     question: "Question 6?",
-  //     options: ["a", "b", "c", "d"],
-  //     correctAnswer: "b",
-  //   },
-  //   {
-  //     id: "q7",
-  //     question: "Question 7?",
-  //     options: ["a", "b", "c", "d"],
-  //     correctAnswer: "a",
-  //   },
-  //   {
-  //     id: "q8",
-  //     question: "Question 8?",
-  //     options: ["a", "b", "c", "d"],
-  //     correctAnswer: "c",
-  //   },
-  //   {
-  //     id: "q9",
-  //     question: "Question 9?",
-  //     options: ["a", "b", "c", "d"],
-  //     correctAnswer: "d",
-  //   },
-  //   {
-  //     id: "q10",
-  //     question: "Question 10?",
-  //     options: ["a", "b", "c", "d"],
-  //     correctAnswer: "c",
-  //   },
-  // ];
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:3000/quiz/getQuiz/${pin}`)
+  //     .then((response) => {
+  //       setStudentQuestions(response.data.data.questionArray);
+  //       console.log(studentQuestions);
+  //     })
+  //     .catch((error) => console.log(error));
+  // }, []);
 
   const correctAnswers = studentQuestions.reduce((acc, question) => {
     acc[studentQuestions._id] = studentQuestions.correctAns;
@@ -97,35 +33,35 @@ const Student = () => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
       // [studentQuestions._id]
-      [studentQuestions[currentQuestionIndex].question]: option,
+      [questions[currentQuestionIndex].question]: option,
     }));
     if (option === correctAns) {
       console.log(
-        `Correct answer for question ${studentQuestions[currentQuestionIndex]._id}!`
+        `Correct answer for question ${questions[currentQuestionIndex]._id}!`
       );
     } else {
       console.log(
-        `Incorrect answer for question ${studentQuestions[currentQuestionIndex]._id}.`
+        `Incorrect answer for question ${questions[currentQuestionIndex]._id}.`
       );
     }
   };
 
   const showQuestion = (index) => {
-    if (!studentQuestions || studentQuestions.length === 0) return;
+    // if (!studentQuestions || studentQuestions.length === 0) return;
 
     return (
-      <div key={studentQuestions[index]._id} className="question-container">
-        <h2 className="question-text">{studentQuestions[index].question}</h2>
+      <div key={questions[index]._id} className="question-container">
+        <h2 className="question-text">{questions[index].question}</h2>
         <div className="grid grid-cols-2 gap-4">
-          {studentQuestions[index].options.map((option, i) => (
+          {questions[index].options.map((option, i) => (
             <button
               key={option}
               className={`option-button ${
-                // answers[studentQuestions[index]._id]
+                // answers[questions[index]._id]
                 selectedOption === i ? "selected" : ""
               }`}
               onClick={() => {
-                chooseOption(option, studentQuestions[index].correctAns);
+                chooseOption(option, questions[index].correctAns);
                 SetSelectedOption(i);
               }}
             >
@@ -139,7 +75,7 @@ const Student = () => {
 
   const nextQuestion = () => {
     setCurrentQuestionIndex(
-      Math.min(currentQuestionIndex + 1, studentQuestions.length - 1)
+      Math.min(currentQuestionIndex + 1, questions.length - 1)
     );
     SetSelectedOption(null);
   };
@@ -150,13 +86,13 @@ const Student = () => {
 
   const submitQuiz = () => {
     let newScore = 0;
-    let totalScored = 10 * studentQuestions.length;
+    let totalScored = 10 * questions.length;
     // Object.keys(answers).forEach((questionId) => {
     //   if (answers[questionId] === correctAnswers[questionId]) {
     //     newScore += 10;
     //   }
     // });
-    studentQuestions.forEach((question, i) => {
+    questions.forEach((question, i) => {
       if (question.correctAns === answers[question.question]) {
         newScore += 10;
       }
@@ -173,6 +109,9 @@ const Student = () => {
     setScore(0);
   };
 
+  if (loadingQuestions) return null;
+
+  console.log(questions);
   return (
     <div className="max-w-2xl mx-auto p-6 bg-gray-900 text-white rounded-lg shadow-lg my-12">
       {!showResult ? (

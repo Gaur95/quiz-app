@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import useLoginUser from "../hooks/useLoginUser";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { loginUser } = useLoginUser();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -14,6 +17,9 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const data = { email, password };
+
+    loginUser(data);
     // Add your login logic here
     console.log("Email:", email);
     console.log("Password:", password);
@@ -25,14 +31,19 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          Sign in to your account
+        </h2>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email address
               </label>
               <div className="mt-1">
@@ -50,7 +61,10 @@ const Login = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Password
               </label>
               <div className="mt-1">
@@ -69,7 +83,10 @@ const Login = () => {
 
             <div className="flex items-center justify-between">
               <div className="text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a
+                  href="#"
+                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                >
                   Forgot your password?
                 </a>
               </div>
@@ -84,7 +101,7 @@ const Login = () => {
               </button>
             </div>
           </form>
-          <NavLink to="/Signup">Already have an account? Signup</NavLink> 
+          <NavLink to="/Signup">Already have an account? Signup</NavLink>
         </div>
       </div>
     </div>
