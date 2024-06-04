@@ -6,27 +6,6 @@ const Result = () => {
   const [pin, setPin] = useState(null);
   const { getScores } = useScores();
   const [scores, setScores] = useState(null);
-  const users = [
-    {
-      name: " Sam",
-      course: " B.Tech",
-      college: "Banasthali Vidyapith",
-      score: "50",
-    },
-    {
-      name: "tan",
-      course: "B.Tech",
-      college: "Banasthali Vidyapith",
-      score: "60",
-    },
-    {
-      name: "div",
-      course: "B.Tech",
-      college: "Banasthali Vidyapith",
-      score: "80",
-    },
-    { name: "ayu", course: "B.Tech", college: "Graphic Era", score: "80" },
-  ];
 
   function handleSubmit() {
     if (!pin) return;
@@ -62,7 +41,7 @@ const Result = () => {
           />
           <button
             type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-md shadow-md"
+            className="w-35 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-md shadow-md"
             onClick={handleSubmit}
           >
             Submit
@@ -73,6 +52,7 @@ const Result = () => {
           <table className="min-w-full bg-white">
             <thead>
               <tr>
+                <th className="py-2 px-4 border-b">Serial No.</th>
                 <th className="py-2 px-4 border-b">Name</th>
                 <th className="py-2 px-4 border-b">Course Name</th>
                 <th className="py-2 px-4 border-b">College Name</th>
@@ -82,13 +62,23 @@ const Result = () => {
             <tbody>
               {scores.map((user, index) => (
                 <tr key={index} className="border-b">
-                  <td className="py-2 px-4">{user.name}</td>
-                  <td className="py-2 px-4">{user.course} </td>
-                  <td className="py-2 px-4">{user.college}</td>
-                  <td className="py-2 px-4 ">
-                    {user.score}/{user.totalScore}
+                  <td className="py-2 px-4">
+                    <div className="text-center">{index + 1}</div>
                   </td>
-                  <td className="py-2 px-4"></td>
+                  <td className="py-2 px-4">
+                    <div className="text-center">{user.name}</div>
+                  </td>
+                  <td className="py-2 px-4">
+                    <div className="text-center">{user.course}</div>
+                  </td>
+                  <td className="py-2 px-4">
+                    <div className="text-center">{user.college}</div>
+                  </td>
+                  <td className="py-2 px-4 ">
+                    <div className="text-center">
+                      {user.score}/{user.totalScore}
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
