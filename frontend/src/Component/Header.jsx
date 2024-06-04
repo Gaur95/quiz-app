@@ -37,12 +37,18 @@ const Header = () => {
             >
               EnterCode
             </Link>
+            <Link
+              to="/result"
+              className="bg-green-700 hover:bg-green-900 text-white px-4 py-2 rounded-md ml-4 text-sm font-medium"
+            >
+              Result
+            </Link>
+
             <div className="bg-green-300 text-white px-4 py-2 rounded-md ml-4 text-sm font-medium">
               Welcome, {user.name}
             </div>
             <button
               onClick={logoutUser}
-              // to="/"
               className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md ml-4 text-sm font-medium"
             >
               LogOut
