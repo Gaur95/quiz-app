@@ -1,39 +1,20 @@
 import React, { useState } from "react";
 import img from "./Images/quizimg2.jpg";
 import useScores from "../hooks/useScores";
+import toast from "react-hot-toast";
 
 const Result = () => {
   const [pin, setPin] = useState(null);
   const { getScores } = useScores();
   const [scores, setScores] = useState(null);
-  const users = [
-    {
-      name: " Sam",
-      course: " B.Tech",
-      college: "Banasthali Vidyapith",
-      score: "50",
-    },
-    {
-      name: "tan",
-      course: "B.Tech",
-      college: "Banasthali Vidyapith",
-      score: "60",
-    },
-    {
-      name: "div",
-      course: "B.Tech",
-      college: "Banasthali Vidyapith",
-      score: "80",
-    },
-    { name: "ayu", course: "B.Tech", college: "Graphic Era", score: "80" },
-  ];
 
   function handleSubmit() {
     if (!pin) return;
     getScores(pin, {
       onSuccess: (scores) => {
-        console.log(scores);
-        setScores(scores);
+        if (scores.length === 0) {
+          toast.error("Invalid Code");
+        } else setScores(scores);
       },
     });
   }
@@ -52,7 +33,7 @@ const Result = () => {
 
         <div className="bg-white p-4 rounded-lg shadow-lg">
           <input
-            type="text"
+            type="Number"
             id="pincode"
             maxLength="5"
             value={pin}

@@ -1,15 +1,31 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bgimg from "./Images/quizimg1.jpg";
 import quizImage from "./Images/imag.2.jpg"; // Import your quiz image
 import devopsImage from "./Images/devops.jpg"; // Replace with the actual image path
 import webDevImage from "./Images/web.jpg"; // Replace with the actual image path
 import dataScienceImage from "./Images/datasc.jpeg"; // Replace with the actual image path
 import embeddedSystemsImage from "./Images/iot.jpeg"; // Replace with the actual image path
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function Home() {
   const [pinCode, setPinCode] = useState("");
+  const navigate = useNavigate();
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!pinCode) return;
+
+    axios
+      .get(`http://localhost:3000/quiz/check/${pinCode}`)
+      .then(() => {
+        navigate(`/student/${pinCode}`);
+      })
+      .catch(() => {
+        toast.error("Code is Invalid");
+      });
+  }
   const handlePinCodeChange = (e) => {
     // e.stopPropagation();
     setPinCode(e.target.value);
@@ -27,7 +43,7 @@ function Home() {
               Enter Pincode:
             </label>
             <input
-              type="text"
+              type="number"
               id="pincode"
               value={pinCode}
               onChange={handlePinCodeChange}
@@ -35,12 +51,13 @@ function Home() {
               className="block w-32 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Enter Pincode"
             />
-            <Link
-              to={`/student/${pinCode}`}
+            <button
+              // to={`/student/${pinCode}`}
+              onClick={handleSubmit}
               className="mt-4 inline-block w-full text-center py-2 px-4 bg-indigo-600 text-white font-medium rounded-md shadow-sm hover:bg-indigo-700"
             >
               Start Quiz
-            </Link>
+            </button>
           </div>
         </div>
         {/* background image */}
@@ -139,7 +156,6 @@ const SubjectCard = ({ image, title, description }) => (
 );
 
 export default Home;
-
 
 // import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";

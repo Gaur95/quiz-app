@@ -25,3 +25,13 @@ export async function getQuiz(pin) {
     console.log(error);
   }
 }
+
+export async function checkQuiz(pin) {
+  try {
+    const response = await axios.get(`http://localhost:3000/quiz/check/${pin}`);
+
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+}
