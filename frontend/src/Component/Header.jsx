@@ -29,8 +29,21 @@ const Header = () => {
               EnterCode
             
             </Link>
+            <Link
+              to=""
+              className="bg-green-300 hover:bg-green-600 text-white px-4 py-2 rounded-md ml-4 text-sm font-medium"
+            >
+              Welcome To BrainZ
+            
+            </Link>
+            <Link
+              to="/"
+              className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md ml-4 text-sm font-medium"
+              >
+                LogOut
+              </Link>
           </div>
-          <div className="flex">
+          {/* <div className="flex">
             <Link
               to="/login"
               className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
@@ -43,7 +56,7 @@ const Header = () => {
             >
               Sign Up
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </nav>

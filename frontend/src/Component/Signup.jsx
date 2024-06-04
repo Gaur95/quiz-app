@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useRegisterUser from "../hooks/useRegisterUser";
+import { NavLink } from "react-router-dom";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -166,6 +167,7 @@ const SignUp = () => {
         {successMessage && (
           <div className="mt-4 text-green-600 text-lg">{successMessage}</div>
         )}
+        <NavLink to="/Login">Already have an account? Login </NavLink>
       </div>
     </div>
   );
