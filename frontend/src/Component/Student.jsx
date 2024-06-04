@@ -18,6 +18,7 @@ const Student = () => {
   const { user, isLoading } = useCurrentUser();
   const { submitScore } = useSubmitScore();
   const { pin } = useParams();
+
   const correctAnswers = studentQuestions.reduce((acc, question) => {
     acc[studentQuestions._id] = studentQuestions.correctAns;
     return acc;

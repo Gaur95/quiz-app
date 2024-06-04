@@ -19,8 +19,8 @@ export const getScore = async (pin) => {
     const response = await axios.get(`http://localhost:3000/score/${pin}`, {
       withCredentials: true,
     });
-
     console.log(response);
+    return response.data.scores;
   } catch (error) {
     console.log(error);
   }

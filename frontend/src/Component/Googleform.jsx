@@ -203,7 +203,7 @@ const Card = ({
           onChange={(e) => handleCorrectAnswerChange(e, question.id)}
           className="border border-gray-700 bg-gray-800 rounded-md p-1 w-full"
            />  */}
-
+{/* for correct answer option */}
         {question.options.map((option, index) => {
           return (
             <>
