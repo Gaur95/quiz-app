@@ -29,13 +29,12 @@ const Header = () => {
               EnterCode
             
             </Link>
-            <Link
-              to=""
-              className="bg-green-300 hover:bg-green-600 text-white px-4 py-2 rounded-md ml-4 text-sm font-medium"
+            <div
+              className="bg-green-300 text-white px-4 py-2 rounded-md ml-4 text-sm font-medium"
             >
               Welcome To BrainZ
             
-            </Link>
+            </div>
             <Link
               to="/"
               className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md ml-4 text-sm font-medium"
