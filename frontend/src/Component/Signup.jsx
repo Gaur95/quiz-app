@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -118,10 +119,13 @@ const SignUp = () => {
             <button type="submit" className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md shadow-md">
               Submit
             </button>
+
           </div>
         </form>
         {successMessage && <div className="mt-4 text-green-600 text-lg">{successMessage}</div>}
+        <NavLink to="/Login">Already have an account? Login </NavLink> 
       </div>
+      
     </div>
   );
 };
