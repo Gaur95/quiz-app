@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import useQuiz from "../hooks/useQuiz";
 import useCurrentUser from "../hooks/useCurrentUser";
 import useSubmitScore from "../hooks/useSubmitScore";
+import toast from "react-hot-toast";
 
 const Student = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);

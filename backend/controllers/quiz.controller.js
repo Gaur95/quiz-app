@@ -30,3 +30,18 @@ export const getQuiz = async (req, res) => {
     console.log(error);
   }
 };
+
+export const checkQuiz = async (req, res) => {
+  try {
+    const { pin } = req.params;
+    const findQuiz = await Quiz.findOne({ pin });
+
+    console.log(findQuiz);
+
+    if (!findQuiz) return res.status(400).json({ success: false });
+
+    return res.status(200).json({ success: true });
+  } catch (error) {
+    console.log(error);
+  }
+};

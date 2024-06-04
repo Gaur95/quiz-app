@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import img from "./Images/quizimg2.jpg";
 import useScores from "../hooks/useScores";
+import toast from "react-hot-toast";
 
 const Result = () => {
   const [pin, setPin] = useState(null);
@@ -11,8 +12,9 @@ const Result = () => {
     if (!pin) return;
     getScores(pin, {
       onSuccess: (scores) => {
-        console.log(scores);
-        setScores(scores);
+        if (scores.length === 0) {
+          toast.error("Invalid Code");
+        } else setScores(scores);
       },
     });
   }
@@ -31,7 +33,7 @@ const Result = () => {
 
         <div className="bg-white p-4 rounded-lg shadow-lg">
           <input
-            type="text"
+            type="Number"
             id="pincode"
             maxLength="5"
             value={pin}
