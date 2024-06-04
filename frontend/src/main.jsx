@@ -16,14 +16,13 @@ import ContactUs from "./Component/ContactUs.jsx";
 import Home from "./Component/Home.jsx";
 import Student from "./Component/Student.jsx";
 import GForm from "./Component/Googleform.jsx";
-import StuDetail from "./Component/StuDetail.jsx";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/quiz" element={<GForm />} />
-      <Route path="/stuDetail" element={<StuDetail/>} />
       <Route path="/contactus" element={<ContactUs />} />
       <Route path="/student/:pin" element={<Student />} />
       <Route path="" element={<Home />} />
