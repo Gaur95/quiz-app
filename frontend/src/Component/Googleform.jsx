@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import useSubmitQuiz from "../hooks/useSubmitQuiz";
 // import "./App.css"; // Ensure you have your styles here
 
 const GForm = () => {
@@ -16,6 +17,7 @@ const GForm = () => {
   ]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [pinCode, setPinCode] = useState(null);
+  const { submitQuiz } = useSubmitQuiz();
 
   const addQuestion = () => {
     const newId = questions.length ? questions[questions.length - 1].id + 1 : 1;
@@ -114,9 +116,7 @@ const GForm = () => {
     });
 
     const data = { quizName, pin, questionArray };
-    console.log(data);
-
-    axios.post("http://localhost:5000/quiz/addQuiz", { data });
+    submitQuiz(data);
     console.log("data sent");
   };
 

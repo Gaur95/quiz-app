@@ -4,18 +4,14 @@ import Header from "./Component/Header";
 import Home from "./Component/Home";
 import Quiz from "./Component/Quiz";
 
-
-
 export default function App() {
   return (
     <>
-    <Header/>
-    <Footer/>
-    <Quiz/>
-    <ContactUs/>
-    <Home/>
+      <Header />
+      <Footer />
+      <Quiz />
+      <ContactUs />
+      <Home />
     </>
-  
-
-  )
+  );
 }
