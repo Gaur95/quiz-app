@@ -1,89 +1,76 @@
-/* StuQuiz.css */
+/* StudentStyles.css */
 
-.quiz-container {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 80%;
-  max-width: 600px;
+/* .option-button {
+  position: relative;
+  width: 100%;                              
+  max-width: 400px;                        
+  padding: 15px 20px;                      
+  background-color: #4a5568;            
+  color: white;
+  font-weight: bold;
   text-align: center;
-}
-
-.question-container {
+  border: 2px solid transparent;
+  clip-path: polygon(
+    10% 0%,
+    90% 0%,
+    100% 50%,
+    90% 100%,
+    10% 100%,
+    0% 50%
+  );                                        
+  transition: all 0.3s ease-in-out;
+  margin: 10px auto;                       
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 300px;
+  min-height: 80px;                       
+}
+
+.option-button:hover {
+  background-color: #3182ce;          
+  border-color: #3182ce;               
+}
+
+.option-button.selected {
+  background-color: #3182ce;           
+  color: #fff;                        
+  border-color: #3182ce;              
+} */
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+
+.question-container {
+  padding: 1.5rem;
+  border: 2px solid #3a5a8f;
+  border-radius: 1rem;
+  background-color: #d1e1af;
 }
 
 .question-text {
-  font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
-.options-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+.option-button {
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-.option-label {
-  font-size: 18px;
-}
-
-.navigation-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.button {
-  padding: 10px 20px;
-  font-size: 18px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.prev-button {
-  background-color: #43ab46;
-  color: white;
-}
-
-.next-button {
-  background-color: #024058;
-  color: white;
-}
-
-.submit-button {
-  background-color: #ff5733;
-  color: white;
-}
-
-.result-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 300px;
-}
-
-.score-text {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.feedback-text {
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-.restart-button {
-  background-color: #ff5733;
-  color: white;
-}
-.selected {
-  color: blue;
+.navigation-buttons .button {
+  margin: 0 0.5rem;
 }

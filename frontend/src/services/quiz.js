@@ -3,7 +3,7 @@ import axios from "axios";
 export async function submitQuiz(data) {
   try {
     const response = await axios.post(
-      "http://localhost:3000/quiz/addQuiz",
+      `http://localhost:3000/quiz/addQuiz`,
       { data },
       { withCredentials: true }
     );
@@ -11,7 +11,7 @@ export async function submitQuiz(data) {
     return response.data.message;
   } catch (error) {
     console.log(error);
-  }
+  }   
 }
 
 export async function getQuiz(pin) {
@@ -20,6 +20,7 @@ export async function getQuiz(pin) {
       `http://localhost:3000/quiz/getQuiz/${pin}`
     );
 
+    // console.log(response.data.data);
     return response.data.data.questionArray;
   } catch (error) {
     console.log(error);

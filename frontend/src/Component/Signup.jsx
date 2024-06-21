@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useRegisterUser from "../hooks/useRegisterUser";
 import { NavLink } from "react-router-dom";
+import backgroundImage from "./Images/snn.jpg";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -45,12 +46,12 @@ const SignUp = () => {
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center"
       style={{
-        backgroundImage: 'url("https://example.com/background-image.jpg")',
+        backgroundImage: `url(${backgroundImage})`,
       }}
     >
-      <div className="bg-white bg-opacity-80 p-10 rounded-lg shadow-lg max-w-md w-full text-center">
+      <div className="bg-white bg-opacity-80 p-10 rounded-lg shadow-lg max-w-md w-full text-center mb-6 mt-6">
         <h2 className="text-2xl font-bold mb-6 text-gray-800">
-          Student Details
+          Register Form
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -89,16 +90,16 @@ const SignUp = () => {
           </div>
           <div>
             <label
-              htmlFor="school"
+              htmlFor="college"
               className="block text-left text-sm font-medium text-gray-700"
             >
               College name:
             </label>
             <input
               type="text"
-              id="school"
+              id="college"
               name="college"
-              value={formData.school}
+              value={formData.college}
               onChange={handleChange}
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -109,7 +110,7 @@ const SignUp = () => {
               htmlFor="contact"
               className="block text-left text-sm font-medium text-gray-700"
             >
-              contact number:
+              Contact number:
             </label>
             <input
               type="tel"
@@ -167,7 +168,9 @@ const SignUp = () => {
         {successMessage && (
           <div className="mt-4 text-green-600 text-lg">{successMessage}</div>
         )}
-        <NavLink to="/Login">Already have an account? Login </NavLink>
+        <NavLink to="/Login" className="mt-4 text-blue-500 hover:text-blue-700">
+          Already have an account? SignIn
+        </NavLink>
       </div>
     </div>
   );

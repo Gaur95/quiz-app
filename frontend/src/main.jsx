@@ -10,7 +10,6 @@ import {
 import Layout from "./Layout.jsx";
 import Login from "./Component/Login.jsx";
 import Signup from "./Component/Signup.jsx";
-import Quiz from "./Component/Quiz.jsx";
 import ContactUs from "./Component/ContactUs.jsx";
 import Home from "./Component/Home.jsx";
 import Student from "./Component/Student.jsx";

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import useLoginUser from "../hooks/useLoginUser";
 import { NavLink } from "react-router-dom";
+import backgroundimg from "./Images/login.jpg";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const { loginUser } = useLoginUser();
 
   const handleEmailChange = (e) => {
@@ -29,7 +32,14 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div
+      className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-cover bg-center pb-8 bg-no-repeat bg-fixed"
+      style={{
+        backgroundImage: `url(${backgroundimg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Sign in to your account
@@ -37,7 +47,7 @@ const Login = () => {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="bg-white bg-opacity-80 py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
@@ -67,11 +77,12 @@ const Login = () => {
               >
                 Password
               </label>
-              <div className="mt-1">
+              <div className="mt-1 relative">
+                <FaRegEyeSlash onClick={()=>setShowPassword(pass => !pass)} className="absolute right-[20px] top-[50%] translate-y-[-50%] cursor-pointer"/>
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={`${showPassword ? "text" : "password"}`}
                   autoComplete="current-password"
                   required
                   value={password}
@@ -101,7 +112,12 @@ const Login = () => {
               </button>
             </div>
           </form>
-          <NavLink to="/Signup">Already have an account? Signup</NavLink>
+          <NavLink
+            to="/Signup"
+            className="block text-center mt-4 text-indigo-600 hover:text-indigo-500"
+          >
+            Don't have an account? Register
+          </NavLink>
         </div>
       </div>
     </div>
