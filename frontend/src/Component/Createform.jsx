@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useSubmitQuiz from "../hooks/useSubmitQuiz";
 import crimage from "./Images/quiqu.jpg";
 
-const GForm = () => {
+const CForm = () => {
   const [quizName, setQuizName] = useState("");
   const [questions, setQuestions] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -159,7 +159,7 @@ const Card = ({
   question,
   deleteQuestion,
   setTitle,
-  handleOptionChange,
+  // handleOptionChange,
   handleCorrectAnswerChange,
   handleOptionTextChange,
 }) => {
@@ -215,7 +215,7 @@ const Card = ({
   );
 };
 
-export default GForm;
+export default CForm;
 
 function generatePinCode() {
   return Math.floor(10000 + Math.random() * 90000).toString(); // 5-digit pin

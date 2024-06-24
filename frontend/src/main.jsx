@@ -7,13 +7,14 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+
 import Layout from "./Layout.jsx";
 import Login from "./Component/Login.jsx";
 import Signup from "./Component/Signup.jsx";
 import ContactUs from "./Component/ContactUs.jsx";
 import Home from "./Component/Home.jsx";
 import Student from "./Component/Student.jsx";
-import GForm from "./Component/Googleform.jsx";
+import CForm from "./Component/Createform.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./Component/ProtectedRoute.jsx";
@@ -32,15 +33,14 @@ const router = createBrowserRouter(
           </ProtectedRoute>
         }
       >
-        <Route path="/quiz" element={<GForm />} />
+        <Route path="/quiz" element={<CForm />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/student/:pin" element={<Student />} />
         <Route path="" element={<Home />} />
-        <Route path="/result" element={<Result/>}/>
+        <Route path="/result" element={<Result />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      
     </>
   )
 );

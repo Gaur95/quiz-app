@@ -1,42 +1,4 @@
-/* StudentStyles.css */
-
-/* .option-button {
-  position: relative;
-  width: 100%;                              
-  max-width: 400px;                        
-  padding: 15px 20px;                      
-  background-color: #4a5568;            
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  border: 2px solid transparent;
-  clip-path: polygon(
-    10% 0%,
-    90% 0%,
-    100% 50%,
-    90% 100%,
-    10% 100%,
-    0% 50%
-  );                                        
-  transition: all 0.3s ease-in-out;
-  margin: 10px auto;                       
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80px;                       
-}
-
-.option-button:hover {
-  background-color: #3182ce;          
-  border-color: #3182ce;               
-}
-
-.option-button.selected {
-  background-color: #3182ce;           
-  color: #fff;                        
-  border-color: #3182ce;              
-} */
-.background-video {
+.background-video {                                   /* student quiz dashboard styling */
   position: absolute;
   top: 0;
   left: 0;
@@ -45,32 +7,26 @@
   object-fit: cover;
   z-index: -1;
 }
-
 .content {
   position: relative;
   z-index: 1;
 }
-
-
 .question-container {
   padding: 1.5rem;
   border: 2px solid #3a5a8f;
   border-radius: 1rem;
   background-color: #d1e1af;
 }
-
 .question-text {
   margin-bottom: 1rem;
   font-size: 1.5rem;
 }
-
 .option-button {
   font-size: 1rem;
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   transition: background-color 0.3s, transform 0.3s;
 }
-
 .navigation-buttons .button {
   margin: 0 0.5rem;
 }
