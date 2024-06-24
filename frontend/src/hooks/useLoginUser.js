@@ -6,7 +6,7 @@ import { login as loginApi } from "../services/user";
 export default function useLoginUser() {
   const navigate = useNavigate();
 
-  const { mutate: loginUser, isLoading: isLogging } = useMutation({
+  const { mutate: loginUser, isPending: isLogging } = useMutation({
     mutationFn: loginApi,
     onSuccess: () => {
       navigate("/");
